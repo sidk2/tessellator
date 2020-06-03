@@ -33,7 +33,7 @@ public class Shape {
 	}
 	public double invLawOfCos(double a, double b, double c)
 	{
-		return Math.acos((a*a+b*b-c*c)/(2*a*b));
+		return Math.acos((a*a+b*b-c*c)/(2*a*b))*180.0/Math.PI;
 	}
 	public double[] getAngles()
 	{
