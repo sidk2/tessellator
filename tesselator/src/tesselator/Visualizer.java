@@ -25,32 +25,17 @@ public class Visualizer {
     public ArrayList<Shape> findAdjacent(Shape shape) {
         // ArrayList<ArrayList<Double>> vertices = shape.getVertices();
         ArrayList<Shape> result = new ArrayList<Shape>();
-
         for (Shape s : shapes) {
-            ArrayList<ArrayList<Double>> common = s.getVertices();
-            common.retainAll(shape.getVertices());
-            if (common.size() > 0) {
-                result.add(s);
+            ArrayList<ArrayList<Double>> targetVerts = shape.getVertices();
+            ArrayList<ArrayList<Double>> questionVerts = s.getVertices();
+
+
+            for (ArrayList<Double> vert : targetVerts) {
+                if (questionVerts.contains(vert)) {
+                    result.add(s);
+                }
             }
         }
-
-        // for (ArrayList<Double> vertex : vertices) {
-        //     ArrayList<Double> sideLengths = toDoublearray(shape.getSideLengths());
-
-        //     for (Shape test : shapes) {
-        //         ArrayList<ArrayList<Double>> testVerts = test.getVertices();
-        //         ArrayList<Double> testLengths = toDoublearray(test.getSideLengths());
-
-        //         if (testVerts.contains(vertex)) {
-        //             sideLengths.retainAll(testLengths);
-        //             if (sideLengths.size() > 0) {
-        //                 result.add(test);
-        //             }
-        //         }
-
-
-        //     }
-        // }
 
         return result;
     }
