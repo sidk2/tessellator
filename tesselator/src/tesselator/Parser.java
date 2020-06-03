@@ -16,21 +16,22 @@ public class Parser {
 	public String getFilepath() {
 		return filepath;
 	}
-/**
- * Double -> coord
- * Array list of doubles -> vertex
- * array list of array list of double -> array list of vertices
- * @return array list of vertices
- */
+
+	/**
+	 * Double -> coord Array list of doubles -> vertex array list of array list of
+	 * double -> array list of vertices
+	 * 
+	 * @return array list of vertices
+	 */
 	public ArrayList<ArrayList<Double>> parseVertices() {
 		ArrayList<ArrayList<Double>> ret = new ArrayList<ArrayList<Double>>();
 		String file = getFilepath();
 		try {
-			File myObj = new File(filepath);
+			File myObj = new File(file);
 			Scanner myReader = new Scanner(myObj);
 			while (myReader.hasNextLine()) {
 				String data = myReader.nextLine();
-				if (data.startsWith("v ")) {
+				if (data.length() > 2 && data.substring(0,2).equals("v ")) {
 					String[] s = data.split(" ");
 					ArrayList v = new ArrayList<Integer>();
 					v.add(Double.parseDouble(s[1]));
@@ -39,15 +40,6 @@ public class Parser {
 					ret.add(v);
 				}
 			}
-				for(ArrayList<Double> a: ret)
-				{
-					for(Double n: a)
-					{
-						System.out.print(n + " ");
-					}
-					System.out.print('\n');
-				}
-			
 			myReader.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
@@ -56,8 +48,8 @@ public class Parser {
 		return ret;
 
 	}
-	public ArrayList<Shape> getFaces()
-	{
+
+	public ArrayList<Shape> getFaces() {
 		ArrayList<ArrayList<Double>> vertices = parseVertices();
 		ArrayList<Shape> ret = new ArrayList<Shape>();
 		try {
@@ -65,18 +57,20 @@ public class Parser {
 			Scanner myReader = new Scanner(myObj);
 			while (myReader.hasNextLine()) {
 				String data = myReader.nextLine();
-				if (data.startsWith("f ")) {
+				if (data.length() > 2 && data.substring(0,2).equals("f ")) {
+					
 					String[] fracs = data.split(" ");
-					int[] nums = new int[4];
-					for(int i = 1; i < 4;i++)
-					{
-						nums[i] = Integer.parseInt(fracs[i].split("/")[0]);
+					int[] nums = new int[3];
+					for (int i = 0; i < 3; i++) {
+						nums[i] = Integer.parseInt(fracs[i+1].split("/")[0]);
 					}
+
 					ArrayList<ArrayList<Double>> shapeCorners = new ArrayList<ArrayList<Double>>();
+					shapeCorners.add(vertices.get(nums[0] - 1));
 					shapeCorners.add(vertices.get(nums[1] - 1));
 					shapeCorners.add(vertices.get(nums[2] - 1));
-					shapeCorners.add(vertices.get(nums[3] - 1));
 					Shape s = new Shape(shapeCorners);
+					
 					ret.add(s);
 				}
 			}
