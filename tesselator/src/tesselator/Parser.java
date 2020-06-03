@@ -73,9 +73,9 @@ public class Parser {
 						nums[i] = Integer.parseInt(fracs[i].split("/")[0]);
 					}
 					ArrayList<ArrayList<Double>> shapeCorners = new ArrayList<ArrayList<Double>>();
-					shapeCorners.add(vertices.get(nums[1]));
-					shapeCorners.add(vertices.get(nums[2]));
-					shapeCorners.add(vertices.get(nums[3]));
+					shapeCorners.add(vertices.get(nums[1] - 1));
+					shapeCorners.add(vertices.get(nums[2] - 1));
+					shapeCorners.add(vertices.get(nums[3] - 1));
 					Shape s = new Shape(shapeCorners);
 					ret.add(s);
 				}
@@ -87,4 +87,5 @@ public class Parser {
 		}
 		return ret;
 	}
+
 }
