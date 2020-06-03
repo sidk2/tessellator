@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Shape {
 	private ArrayList<ArrayList<Double>> vertices;
-	private final double INCH_CONVERTER = 2.52;
-	private final double SCALE_FACTOR = 1000;
+	private final double INCH_CONVERTER = 1.0; // ignore;
+	private final double SCALE_FACTOR = 100;
 	public Shape(ArrayList<ArrayList<Double>> d)
 	{
 		vertices = d;
