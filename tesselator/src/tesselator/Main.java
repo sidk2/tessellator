@@ -12,11 +12,10 @@ public class Main {
 		// 	System.out.print((new ShapeData(sh)).toString());
 		// }
 			
-		Visualizer v = new Visualizer();
-		v.setShapes(s);
-		ArrayList<Shape> s1 = v.findAdjacent(s.get(6));
+		Visualizer v = new Visualizer(s);
+		ArrayList<Shape> s1 = v.findAdjacent(s.get(0));
 
-		System.out.println((new ShapeData(s.get(6))).toString());
+		System.out.println((new ShapeData(s.get(0))).toString());
 		System.out.println("----");
 		for (Shape shape : s1) {
 			System.out.println((new ShapeData(shape)).toString());

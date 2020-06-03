@@ -6,6 +6,12 @@ import java.util.*;
 public class Visualizer {
     ArrayList<Shape> shapes;
 
+    public Visualizer() {}
+
+    public Visualizer(ArrayList<Shape> shapes) {
+        this.shapes = shapes;
+    }
+
     public void setShapes(ArrayList<Shape> shapes) {
         this.shapes = shapes;
     }
@@ -23,21 +29,20 @@ public class Visualizer {
     }
 
     public ArrayList<Shape> findAdjacent(Shape shape) {
-        // ArrayList<ArrayList<Double>> vertices = shape.getVertices();
-        ArrayList<Shape> result = new ArrayList<Shape>();
+        Set<Shape> result = new HashSet<Shape>();
         for (Shape s : shapes) {
             ArrayList<ArrayList<Double>> targetVerts = shape.getVertices();
             ArrayList<ArrayList<Double>> questionVerts = s.getVertices();
 
 
             for (ArrayList<Double> vert : targetVerts) {
-                if (questionVerts.contains(vert)) {
+                if (questionVerts.contains(vert) && !shape.getVertices().equals(s.getVertices())) {
                     result.add(s);
                 }
             }
         }
 
-        return result;
+        return new ArrayList<Shape>(result);
     }
 
 

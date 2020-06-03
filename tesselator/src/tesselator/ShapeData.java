@@ -11,27 +11,24 @@ public class ShapeData {
 		angles = s.getAngles();
 		vertices = s.getVertices();
 	}
-	public String toString()
-	{
-		String s = "";
-		s+= "side lengths: ";
-		for(double d:sideLengths)
-		{
-			s+=d;
-			s+=", ";
+	public String toString() {
+		String result = "";
+		result += "Side Lengths: ";
+		for(double d : sideLengths) {
+			result += Math.floor(d * 1000000) / 1000000;
+			result += ", ";
 		}
-		s+="|angles: ";
-		for(double d:angles)
-		{
-			s+=d;
-			s+=", ";
+		result+="| Angles: ";
+		for(double d : angles) {
+			result += Math.floor(d * 1000000) / 1000000;
+			result += ", ";
 		}
-		s+="|vertices: ";
+		result+="| Vertices: ";
 		for (ArrayList<Double> vertex : vertices) {
-			s+=vertex.toString();
+			result += vertex.toString();
 		}
 
-		s+="\n";
-		return s;
+		result += "\n";
+		return result;
 	}
 }
