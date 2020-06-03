@@ -22,7 +22,7 @@ public class Visualizer {
         return result;
     }
 
-    public ArrayList<Shape> findSides(Shape shape) {
+    public ArrayList<Shape> findAdjacent(Shape shape) {
         ArrayList<ArrayList<Double>> vertices = shape.getVertices();
         ArrayList<Shape> result = new ArrayList<Shape>();
 
