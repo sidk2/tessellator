@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Main {
 	
 	public static void main(String[] args) {
-		Parser p = new Parser("tesselator/ico.obj");
+		Parser p = new Parser("Aang.obj");
 		ArrayList<Shape> s = p.getFaces();
 		// int triangles = 0;
 		//  for(Shape sh:s)
@@ -29,7 +29,7 @@ public class Main {
 		// 	System.out.println((new ShapeData(shape)).toString());
 		// }
 
-		v.createCSV("tesselator/output.csv");
+		v.createCSV("output.csv");
 
 
 	}
