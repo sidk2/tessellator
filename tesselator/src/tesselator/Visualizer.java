@@ -68,13 +68,16 @@ public class Visualizer {
                                         , "C adj to", "Angle A/B", "Angle B/C"
                                         , "Angle A/C"};
             fileAppend(writer, row);
-            row[2] = row[4] = row[6] = "--";
+            
 
             for (int i = 0; i < faces.size(); i++) {
                 Shape s = faces.get(i);
                 ArrayList<Double> sides = toDoubleArray(s.getSideLengths());
                 double[] angles = s.getAngles();
                 ArrayList<Shape> adjacents = findAdjacent(s);
+                row[2] = "";
+                row[4] = "";
+                row[6] = "";
 
                 if (angles[0] == 0.0 || Double.isNaN(angles[0])) continue;
 
@@ -91,10 +94,14 @@ public class Visualizer {
                     if (deep.size() == 1) {
                         int side = (2 * sides.indexOf(deep.get(0))) + 2;
                         int target = adjacentSides.indexOf(deep.get(0));
-                        if (side > 0) row[side] = Integer.toString(adjNum + 1) + " - " + String.valueOf((char)(target + 65));
-                        else row[2] = row[4] = row[6] = "--";
+                        // System.out.println(new ShapeData(s).toString() + new ShapeData(adjacent).toString() + " " + side);
+                        if (side > 0) row[side] += Integer.toString(adjNum + 1) + " - " + String.valueOf((char)(target + 65)) + "; ";
+                        
                     }
                 }
+                if (row[2].length() == 0) row[2] = "--";
+                if (row[4].length() == 0) row[4] = "--";
+                if (row[6].length() == 0) row[6] = "--";
 
 
                 // for (int j = 0; j < adjacent.size(); j++) {

@@ -18,16 +18,16 @@ public class ShapeData {
 			result += Math.floor(d * 1000000) / 1000000;
 			result += ", ";
 		}
-		result+="| Angles: ";
-		for(double d : angles) {
-			result += Math.floor(d * 1000000) / 1000000;
-			result += ", ";
+		// result+="| Angles: ";
+		// for(double d : angles) {
+		// 	result += Math.floor(d * 1000000) / 1000000;
+		// 	result += ", ";
+		// }
+		result+="| Vertices: ";
+		for (ArrayList<Double> vertex : vertices) {
+			result += vertex.toString();
 		}
-//		result+="| Vertices: ";
-//		for (ArrayList<Double> vertex : vertices) {
-//			result += vertex.toString();
-//		}
-//
+
 		result += "\n";
 		return result;
 	}
