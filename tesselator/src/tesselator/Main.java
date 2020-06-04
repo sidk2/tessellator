@@ -21,14 +21,14 @@ public class Main {
 
 
 		Visualizer v = new Visualizer(s);
-		// ArrayList<Shape> s1 = v.findAdjacent(s.get(0));
+		// ArrayList<Shape> s1 = v.findAdjacent(s.get(10));
 
-		// System.out.println((new ShapeData(s.get(0))).toString());
+		// System.out.println((new ShapeData(s.get(10))).toString());
 		// System.out.println("----");
 		// for (Shape shape : s1) {
 		// 	System.out.println((new ShapeData(shape)).toString());
 		// }
-		//"working"
+
 		v.createCSV("tesselator/output.csv");
 
 

@@ -30,20 +30,42 @@ public class Visualizer {
     }
 
     public ArrayList<Shape> findAdjacent(Shape shape) {
-        Set<Shape> result = new HashSet<Shape>();
+        ArrayList<Shape> result = new ArrayList<Shape>();
+        ArrayList<ArrayList<Double>> targetVerts = shape.getVertices();
+
         for (Shape s : faces) {
-            ArrayList<ArrayList<Double>> targetVerts = shape.getVertices();
+            if (s.getAngles()[0] == 0.0 || Double.isNaN(s.getAngles()[0]) || shape.getVertices().equals(s.getVertices())) continue;
+
             ArrayList<ArrayList<Double>> questionVerts = s.getVertices();
+            ArrayList<ArrayList<Double>> deep = new ArrayList<>();
 
-
-            for (ArrayList<Double> vert : targetVerts) {
-                if (questionVerts.contains(vert) && !shape.getVertices().equals(s.getVertices())) {
-                    result.add(s);
-                }
+            for (ArrayList<Double> vert : questionVerts) {
+                deep.add(vert);
             }
+
+            deep.retainAll(targetVerts);
+            if (deep.size() > 1) {
+                result.add(s);
+            }
+            
         }
 
-        return new ArrayList<Shape>(result);
+        return result;
+        
+        // Set<Shape> result = new HashSet<Shape>();
+        // for (Shape s : faces) {
+        //     ArrayList<ArrayList<Double>> targetVerts = shape.getVertices();
+        //     ArrayList<ArrayList<Double>> questionVerts = s.getVertices();
+
+
+        //     for (ArrayList<Double> vert : targetVerts) {
+        //         if (questionVerts.contains(vert) && !shape.getVertices().equals(s.getVertices())) {
+        //             result.add(s);
+        //         }
+        //     }
+        // }
+
+        // return new ArrayList<Shape>(result);
     }
 
     public void fileAppend(FileWriter writer, String[] args) {
