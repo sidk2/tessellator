@@ -33,7 +33,7 @@ public class Parser {
 				String data = myReader.nextLine();
 				if (data.length() > 2 && data.substring(0,2).equals("v ")) {
 					String[] s = data.split(" ");
-					ArrayList v = new ArrayList<Integer>();
+					ArrayList<Double> v = new ArrayList<Double>();
 					v.add(Double.parseDouble(s[1]));
 					v.add(Double.parseDouble(s[2]));
 					v.add(Double.parseDouble(s[3]));
