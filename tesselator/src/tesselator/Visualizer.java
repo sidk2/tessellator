@@ -51,21 +51,6 @@ public class Visualizer {
         }
 
         return result;
-        
-        // Set<Shape> result = new HashSet<Shape>();
-        // for (Shape s : faces) {
-        //     ArrayList<ArrayList<Double>> targetVerts = shape.getVertices();
-        //     ArrayList<ArrayList<Double>> questionVerts = s.getVertices();
-
-
-        //     for (ArrayList<Double> vert : targetVerts) {
-        //         if (questionVerts.contains(vert) && !shape.getVertices().equals(s.getVertices())) {
-        //             result.add(s);
-        //         }
-        //     }
-        // }
-
-        // return new ArrayList<Shape>(result);
     }
 
     public void fileAppend(FileWriter writer, String[] args) {
@@ -126,31 +111,6 @@ public class Visualizer {
                 if (row[6].length() == 0) row[6] = "--";
 
 
-                // for (int j = 0; j < adjacent.size(); j++) {
-                //     double[] adjSides = adjacent.get(j).getSideLengths();
-                //     int adjNum = faces.indexOf(adjacent.get(j));
-                    
-                //     for (int k = 0; k < adjSides.length; k++) {
-                //         double side = adjSides[k];
-                //         int match = sides.indexOf(new Double(side));
-                //         System.out.println(side + " " + match);
-                //         switch (match) {
-                //             case 0:
-                //                 row[2] = Integer.toString(adjNum + 1) + " - " + Integer.toString(k + 1);
-                //                 break;
-                //             case 1:
-                //                 row[4] = Integer.toString(adjNum + 1) + " - " + Integer.toString(k + 1);
-                //                 break;
-                //             case 2:
-                //                 row[6] = Integer.toString(adjNum + 1) + " - " + Integer.toString(k + 1);
-                //                 break;
-                //             default:
-                //                 row[2] = row[4] = row[6] = "--";
-                //                 break;
-                //         }
-                //     }
-                // }
-
                 
                 row[0] = Integer.toString(i + 1);
                 row[1] = Double.toString(sides.get(0));
@@ -162,7 +122,6 @@ public class Visualizer {
 
                 fileAppend(writer, row);
             }
-
 
              writer.flush();
              writer.close();

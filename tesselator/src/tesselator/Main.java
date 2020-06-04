@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Main {
 	
 	public static void main(String[] args) {
-		Parser p = new Parser("tesselator/Appa.obj");
+		Parser p = new Parser("tesselator/ico.obj");
 		ArrayList<Shape> s = p.getFaces();
 		// int triangles = 0;
 		//  for(Shape sh:s)
