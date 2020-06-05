@@ -28,7 +28,7 @@ public class Visualizer {
         }
         return result;
     }
-
+    //returns in order ACB
     public ArrayList<Shape> findAdjacent(Shape shape) {
         ArrayList<Shape> result = new ArrayList<Shape>();
         ArrayList<ArrayList<Double>> targetVerts = shape.getVertices();
@@ -44,7 +44,8 @@ public class Visualizer {
             }
 
             deep.retainAll(targetVerts);
-            if (deep.size() > 1) {
+
+            if (deep.size() == 2) {
                 result.add(s);
             }
             
@@ -82,29 +83,73 @@ public class Visualizer {
                 ArrayList<Double> sides = toDoubleArray(s.getSideLengths());
                 double[] angles = s.getAngles();
                 ArrayList<Shape> adjacents = findAdjacent(s);
+                ArrayList<ArrayList<Double>> targetVerts = s.getVertices();
+
+                
+                // System.out.print((new ShapeData(s)).toString());
+                // for (Shape adj : adjacents) {
+                //     System.out.print((new ShapeData(adj)).toString());
+                // }
+                // System.out.print("\n");
                 row[2] = "";
                 row[4] = "";
                 row[6] = "";
 
                 if (angles[0] == 0.0 || Double.isNaN(angles[0])) continue;
 
-                for (Shape adjacent : adjacents) {
-                    ArrayList<Double> adjacentSides = toDoubleArray(adjacent.getSideLengths());
-                    ArrayList<Double> deep = new ArrayList<>();
+                // if (i + 1 == 1652) {
+                //     ArrayList<ArrayList<Double>> verts = s.getVertices();
+                //     for (ArrayList<Double> vert : verts) {
+                //         System.out.println(vert);
+                //     }
+                    
+                // }
+                // System.out.print((new ShapeData(s)).toString());
+                for (int j = 0; j < adjacents.size(); j++) {
+
+                    Shape adjacent = adjacents.get(j);
+                    ArrayList<ArrayList<Double>> questionVerts = adjacent.getVertices();
+                    String side = " ";
+                    // System.out.print((new ShapeData(adjacent)).toString());
+
+                    if (targetVerts.contains(questionVerts.get(0)) && targetVerts.contains(questionVerts.get(1))) side = "A";
+                    if (targetVerts.contains(questionVerts.get(1)) && targetVerts.contains(questionVerts.get(2))) side = "B";
+                    if (targetVerts.contains(questionVerts.get(0)) && targetVerts.contains(questionVerts.get(2))) side = "C";
+
+
+                    int index;
+
+                    if (targetVerts.indexOf(questionVerts.get(0)) == -1) {
+                        index = targetVerts.indexOf(questionVerts.get(1)) + targetVerts.indexOf(questionVerts.get(2)) - 1;
+                    } else if (targetVerts.indexOf(questionVerts.get(1)) == -1) {
+                        index = targetVerts.indexOf(questionVerts.get(0)) + targetVerts.indexOf(questionVerts.get(2)) - 1;
+                    } else {
+                        index = targetVerts.indexOf(questionVerts.get(0)) + targetVerts.indexOf(questionVerts.get(1)) - 1;
+                    }
+
+
+                    
                     int adjNum = faces.indexOf(adjacent);
+                    index = -3 * (int) Math.pow((double) index, 2) + 7 * index + 2;
+                    row[index] += Integer.toString(adjNum + 1) + " - " + side + "| ";
 
-                    for (Double side : adjacentSides) {
-                        deep.add(side);
-                    }
 
-                    deep.retainAll(sides);
-                    if (deep.size() == 1) {
-                        int side = (2 * sides.indexOf(deep.get(0))) + 2;
-                        int target = adjacentSides.indexOf(deep.get(0));
-                        // System.out.println(new ShapeData(s).toString() + new ShapeData(adjacent).toString() + " " + side);
-                        if (side > 0) row[side] += Integer.toString(adjNum + 1) + " - " + String.valueOf((char)(target + 65)) + "; ";
+                    // ArrayList<Double> adjacentSides = toDoubleArray(adjacent.getSideLengths());
+                    // ArrayList<Double> deep = new ArrayList<>();
+                    
+
+                    // for (Double side : adjacentSides) {
+                    //     deep.add(side);
+                    // }
+
+                    // deep.retainAll(sides);
+                    // if (deep.size() >= 1) {
+                    //     int side = (2 * sides.indexOf(deep.get(0))) + 2;
+                    //     int target = adjacentSides.indexOf(deep.get(0));
+                    //     System.out.println(new ShapeData(s).toString() + new ShapeData(adjacent).toString() + " " + side);
+                    //     if (side > 0) row[side] += Integer.toString(adjNum + 1) + " - " + String.valueOf((char)(target + 65)) + "| ";
                         
-                    }
+                    // }
                 }
                 if (row[2].length() == 0) row[2] = "--";
                 if (row[4].length() == 0) row[4] = "--";

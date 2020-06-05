@@ -7,6 +7,7 @@ public class ShapeData {
 	private ArrayList<ArrayList<Double>> vertices = new ArrayList<>();
 	public ShapeData(Shape s)
 	{
+		if (sideLengths == null) System.out.println("FOUND IT");
 		sideLengths = s.getSideLengths();
 		angles = s.getAngles();
 		vertices = s.getVertices();
@@ -27,7 +28,6 @@ public class ShapeData {
 		for (ArrayList<Double> vertex : vertices) {
 			result += vertex.toString();
 		}
-
 		result += "\n";
 		return result;
 	}

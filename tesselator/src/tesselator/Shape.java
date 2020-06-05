@@ -6,6 +6,7 @@ public class Shape {
 	private ArrayList<ArrayList<Double>> vertices;
 	private final double INCH_CONVERTER = 1.0; // ignore;
 	private final double SCALE_FACTOR = 100;
+	
 	public Shape(ArrayList<ArrayList<Double>> d)
 	{
 		vertices = d;
